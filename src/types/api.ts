@@ -3,6 +3,8 @@ export interface ApiMeta {
   timestamp?: string;
 }
 
+export type DataSource = "api" | "mock";
+
 export interface ApiError {
   code: string;
   message: string;
@@ -22,3 +24,9 @@ export interface PaginatedResponse<TItem> {
   pageSize: number;
 }
 
+export interface DataRequestResult<TData> {
+  data: TData;
+  source: DataSource;
+  message?: string;
+  updatedAt: string;
+}

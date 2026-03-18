@@ -1,15 +1,54 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { Download, TimerReset } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { fetchAnalyticsSummary } from "@/features/analytics/api";
 import { ChartPanel } from "@/features/analytics/components/chart-panel";
 import { AnalyticsKpiCard } from "@/features/analytics/components/analytics-kpi-card";
 import { InsightStat } from "@/features/analytics/components/insight-stat";
 import { ZoneActivityCard } from "@/features/analytics/components/zone-activity-card";
 import { analyticsPageData } from "@/features/analytics/mock/analytics-data";
+import type { AnalyticsPageData } from "@/features/analytics/types";
 import { getThreatToneClasses } from "@/features/analytics/utils/analytics-styles";
+import type { DataSource } from "@/types";
 
 export function AnalyticsOverview() {
+  const [pageData, setPageData] = useState<AnalyticsPageData>(analyticsPageData);
+  const [dataSource, setDataSource] = useState<DataSource>("mock");
+  const [statusMessage, setStatusMessage] = useState<string>(
+    "Using local analytics dataset.",
+  );
+  const hasRequestedData = useRef(false);
+
+  useEffect(() => {
+    let isActive = true;
+
+    if (!hasRequestedData.current) {
+      hasRequestedData.current = true;
+
+      void fetchAnalyticsSummary().then((result) => {
+        if (!isActive) {
+          return;
+        }
+
+        setPageData(result.data);
+        setDataSource(result.source);
+        setStatusMessage(
+          result.source === "api"
+            ? "Live analytics API connected."
+            : (result.message ?? "Using local analytics dataset."),
+        );
+      });
+    }
+
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
   return (
     <div className="space-y-6">
       <Card className="border-border-subtle/80 bg-surface/88">
@@ -27,6 +66,17 @@ export function AnalyticsOverview() {
                 response performance, and reserve-level activity across the
                 RhinoGuardians network.
               </p>
+              <div className="inline-flex items-center gap-2 rounded-full border border-border-subtle/80 bg-canvas/45 px-3 py-2 text-xs font-medium uppercase tracking-[0.18em] text-text-muted">
+                <span
+                  className={
+                    dataSource === "api"
+                      ? "h-2 w-2 rounded-full bg-brand-secondary"
+                      : "h-2 w-2 rounded-full bg-amber-300"
+                  }
+                />
+                {dataSource === "api" ? "Live analytics feed" : "Mock fallback active"}
+              </div>
+              <p className="text-sm text-text-muted">{statusMessage}</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -43,13 +93,13 @@ export function AnalyticsOverview() {
       </Card>
 
       <div className="grid gap-4 xl:grid-cols-5">
-        {analyticsPageData.metrics.map((metric) => (
+        {pageData.metrics.map((metric) => (
           <AnalyticsKpiCard key={metric.id} metric={metric} />
         ))}
       </div>
 
       <div className="grid gap-4 xl:grid-cols-3">
-        {analyticsPageData.trendSeries.map((series) => (
+        {pageData.trendSeries.map((series) => (
           <ChartPanel key={series.id} series={series} />
         ))}
       </div>
@@ -66,7 +116,7 @@ export function AnalyticsOverview() {
               </h3>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
-              {analyticsPageData.threatBreakdown.map((item) => (
+              {pageData.threatBreakdown.map((item) => (
                 <div
                   className="rounded-2xl border border-border-subtle/80 bg-canvas/45 p-4"
                   key={item.id}
@@ -105,7 +155,7 @@ export function AnalyticsOverview() {
               </h3>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              {analyticsPageData.responsePerformance.map((item) => (
+              {pageData.responsePerformance.map((item) => (
                 <InsightStat
                   key={item.id}
                   label={item.label}
@@ -130,7 +180,7 @@ export function AnalyticsOverview() {
               </h3>
             </div>
             <div className="grid gap-4 md:grid-cols-2">
-              {analyticsPageData.zoneActivity.map((zone) => (
+              {pageData.zoneActivity.map((zone) => (
                 <ZoneActivityCard key={zone.id} zone={zone} />
               ))}
             </div>
@@ -149,7 +199,7 @@ export function AnalyticsOverview() {
                 </h3>
               </div>
               <div className="space-y-3">
-                {analyticsPageData.mostActiveZones.map((zone) => (
+                {pageData.mostActiveZones.map((zone) => (
                   <InsightStat
                     badge={zone.status}
                     badgeClassName="border-amber-400/20 bg-amber-400/10 text-amber-300"
@@ -174,7 +224,7 @@ export function AnalyticsOverview() {
                 </h3>
               </div>
               <div className="space-y-3">
-                {analyticsPageData.safestZones.map((zone) => (
+                {pageData.safestZones.map((zone) => (
                   <InsightStat
                     badge={zone.status}
                     badgeClassName="border-status-success/20 bg-status-success/10 text-status-success"

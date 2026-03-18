@@ -19,6 +19,6 @@ export const useUiStore = create<UiStoreState>((set) => ({
 
 export type AppStore = DashboardSlice;
 
-export const useAppStore = create<AppStore>()((set) => ({
-  ...createDashboardSlice(set),
+export const useAppStore = create<AppStore>()((set, get) => ({
+  ...createDashboardSlice(set, get),
 }));
