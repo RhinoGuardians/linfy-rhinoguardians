@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import { LoaderCircle, RadioTower } from "lucide-react";
 
 import { apiConfig } from "@/config/api";
+import { DataSourceStatusCard } from "@/components/shared/data-source-status";
 import { Card, CardContent } from "@/components/ui/card";
 import { CommandCenterKpiCard } from "@/features/dashboard/components/command-center-kpi-card";
 import { IncidentRow } from "@/features/dashboard/components/incident-row";
@@ -12,7 +12,6 @@ import { MapSurfaceCard } from "@/features/dashboard/components/map-surface-card
 import { ReserveOverviewCard } from "@/features/dashboard/components/reserve-overview-card";
 import { selectRecentIncidents } from "@/features/dashboard/selectors";
 import { usePolling } from "@/hooks/use-polling";
-import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store";
 
 export function DashboardOverview() {
@@ -64,49 +63,17 @@ export function DashboardOverview() {
 
   return (
     <div className="space-y-6">
-      <Card className="border-border-subtle/80 bg-surface/88">
-        <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-secondary">
-              Live data status
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <div
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-full border px-3 py-2 text-sm",
-                  dataSource === "api"
-                    ? "border-brand-primary/25 bg-brand-primary/10 text-brand-secondary"
-                    : "border-border-subtle/80 bg-canvas/45 text-text-muted",
-                )}
-              >
-                {isLoading ? (
-                  <LoaderCircle className="h-4 w-4 animate-spin text-brand-secondary" />
-                ) : (
-                  <RadioTower
-                    className={cn(
-                      "h-4 w-4",
-                      dataSource === "api"
-                        ? "text-brand-secondary"
-                        : "text-text-muted",
-                    )}
-                  />
-                )}
-                {dataSource === "api"
-                  ? "Live API feed"
-                  : isLoading
-                    ? "Syncing operations data"
-                    : "Mock fallback active"}
-              </div>
-              <p className="text-sm text-text-muted">
-                {statusMessage ?? "Monitoring systems are preparing the latest reserve view."}
-              </p>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-border-subtle/80 bg-canvas/45 px-4 py-3 text-sm text-text-muted">
-            Last updated: {formattedUpdatedTime}
-          </div>
-        </CardContent>
-      </Card>
+      <DataSourceStatusCard
+        isLoading={isLoading}
+        label="Live data status"
+        loadingLabel="Syncing operations data"
+        message={
+          statusMessage ??
+          "Monitoring systems are preparing the latest reserve view."
+        }
+        meta={<span>Last updated: {formattedUpdatedTime}</span>}
+        source={dataSource ?? "mock"}
+      />
 
       <div className="grid gap-4 xl:grid-cols-4">
         {summaryMetrics.map((item) => (

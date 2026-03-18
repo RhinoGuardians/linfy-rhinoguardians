@@ -20,9 +20,9 @@ export function DashboardPlaceholderPanel({
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            "Ready for data-backed widgets",
-            "Aligned with protected route shell",
-            "Prepared for Phase 5 modules",
+            "Ready for data-backed controls",
+            "Aligned with the secured dashboard shell",
+            "Prepared for enterprise workspace settings",
           ].map((item) => (
             <div
               className="rounded-2xl border border-border-subtle/80 bg-canvas/45 px-4 py-5 text-sm text-text-muted"
@@ -36,4 +36,3 @@ export function DashboardPlaceholderPanel({
     </Card>
   );
 }
-

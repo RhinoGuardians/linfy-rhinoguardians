@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Download, FileText, LoaderCircle, RadioTower } from "lucide-react";
+import { Download, FileText } from "lucide-react";
 
+import { DataSourceStatusCard } from "@/components/shared/data-source-status";
 import { EmptyState } from "@/components/shared/empty-state";
+import { ModuleLoadingState } from "@/components/shared/module-loading-state";
 import { PageHeader } from "@/components/shared/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,7 +18,6 @@ import type {
   RangersFilterState,
   RangersWorkspaceData,
 } from "@/features/rangers/types";
-import { cn } from "@/lib/utils";
 import type { DataSource, RangerUnit } from "@/types";
 
 const initialFilters: RangersFilterState = {
@@ -152,12 +153,10 @@ export function RangersOverview() {
           eyebrow="Field operations"
           title="Rangers"
         />
-        <Card className="border-border-subtle/80 bg-surface/88">
-          <CardContent className="flex items-center gap-3 p-6 text-sm text-text-muted">
-            <LoaderCircle className="h-4 w-4 animate-spin text-brand-secondary" />
-            Preparing ranger operations workspace...
-          </CardContent>
-        </Card>
+        <ModuleLoadingState
+          description="Preparing the field roster, readiness indicators, and communication context for ranger operations."
+          title="Preparing ranger operations workspace"
+        />
       </div>
     );
   }
@@ -175,12 +174,22 @@ export function RangersOverview() {
     <div className="space-y-6">
       <PageHeader
         action={
-          <div className="flex flex-wrap gap-3">
-            <Button size="sm" type="button" variant="secondary">
+          <div className="flex flex-wrap gap-3 md:justify-end">
+            <Button
+              aria-label="Export ranger status summary"
+              size="sm"
+              type="button"
+              variant="secondary"
+            >
               <Download className="mr-2 h-4 w-4" />
               Export status
             </Button>
-            <Button size="sm" type="button" variant="primary">
+            <Button
+              aria-label="Open ranger dispatch summary"
+              size="sm"
+              type="button"
+              variant="primary"
+            >
               <FileText className="mr-2 h-4 w-4" />
               Dispatch summary
             </Button>
@@ -191,39 +200,15 @@ export function RangersOverview() {
         title="Rangers"
       />
 
-      <Card className="border-border-subtle/80 bg-surface/88">
-        <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-secondary">
-              Data source
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <div
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-full border px-3 py-2 text-sm",
-                  dataSource === "api"
-                    ? "border-brand-primary/25 bg-brand-primary/10 text-brand-secondary"
-                    : "border-border-subtle/80 bg-canvas/45 text-text-muted",
-                )}
-              >
-                <RadioTower
-                  className={cn(
-                    "h-4 w-4",
-                    dataSource === "api"
-                      ? "text-brand-secondary"
-                      : "text-text-muted",
-                  )}
-                />
-                {dataSource === "api" ? "Live API feed" : "Mock fallback active"}
-              </div>
-              <p className="text-sm text-text-muted">{statusMessage}</p>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-border-subtle/80 bg-canvas/45 px-4 py-3 text-sm text-text-muted">
+      <DataSourceStatusCard
+        message={statusMessage}
+        meta={
+          <span>
             Reviewing {filteredRoster.length} of {workspace.roster.length} ranger units
-          </div>
-        </CardContent>
-      </Card>
+          </span>
+        }
+        source={dataSource}
+      />
 
       <div className="grid gap-4 xl:grid-cols-5">
         {workspace.summary.map((item) => (

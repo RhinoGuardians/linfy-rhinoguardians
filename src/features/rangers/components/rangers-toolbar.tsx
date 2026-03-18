@@ -70,7 +70,8 @@ export function RangersToolbar({
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
               <input
-                className="h-11 w-full rounded-xl border border-border-subtle/80 bg-canvas/45 pl-10 pr-4 text-sm text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-brand-primary/35"
+                aria-label="Search ranger units"
+                className="dashboard-filter-input pl-10"
                 onChange={(event) =>
                   onChange(updateFilter(filters, "search", event.target.value))
                 }
@@ -85,7 +86,8 @@ export function RangersToolbar({
               Status
             </span>
             <select
-              className="h-11 w-full rounded-xl border border-border-subtle/80 bg-canvas/45 px-4 text-sm text-text-primary outline-none transition-colors focus:border-brand-primary/35"
+              aria-label="Filter rangers by status"
+              className="dashboard-filter-select"
               onChange={(event) =>
                 onChange(
                   updateFilter(
@@ -110,7 +112,8 @@ export function RangersToolbar({
               Assigned zone
             </span>
             <select
-              className="h-11 w-full rounded-xl border border-border-subtle/80 bg-canvas/45 px-4 text-sm text-text-primary outline-none transition-colors focus:border-brand-primary/35"
+              aria-label="Filter rangers by assigned zone"
+              className="dashboard-filter-select"
               onChange={(event) =>
                 onChange(updateFilter(filters, "zone", event.target.value))
               }
@@ -136,7 +139,8 @@ export function RangersToolbar({
               Communications
             </span>
             <select
-              className="h-11 w-full rounded-xl border border-border-subtle/80 bg-canvas/45 px-4 text-sm text-text-primary outline-none transition-colors focus:border-brand-primary/35"
+              aria-label="Filter rangers by communication status"
+              className="dashboard-filter-select"
               onChange={(event) =>
                 onChange(
                   updateFilter(
@@ -161,7 +165,8 @@ export function RangersToolbar({
               Readiness
             </span>
             <select
-              className="h-11 w-full rounded-xl border border-border-subtle/80 bg-canvas/45 px-4 text-sm text-text-primary outline-none transition-colors focus:border-brand-primary/35"
+              aria-label="Filter rangers by readiness band"
+              className="dashboard-filter-select"
               onChange={(event) =>
                 onChange(
                   updateFilter(
@@ -182,7 +187,7 @@ export function RangersToolbar({
           </label>
         </div>
 
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="inline-flex items-center gap-2 rounded-2xl border border-border-subtle/80 bg-canvas/45 px-4 py-3 text-sm text-text-muted">
             <RadioTower className="h-4 w-4 text-brand-secondary" />
             Communications and readiness are refreshed from the same field

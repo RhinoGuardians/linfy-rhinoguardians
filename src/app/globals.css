@@ -104,3 +104,52 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+@layer components {
+  .dashboard-filter-input,
+  .dashboard-filter-select {
+    height: 2.75rem;
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid hsl(var(--border-subtle) / 0.8);
+    background: hsl(var(--bg-canvas) / 0.45);
+    color: hsl(var(--text-primary));
+    font-size: 0.875rem;
+    outline: none;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .dashboard-filter-input {
+    padding: 0 1rem;
+  }
+
+  .dashboard-filter-select {
+    padding: 0 1rem;
+  }
+
+  .dashboard-filter-input::placeholder {
+    color: hsl(var(--text-muted));
+  }
+
+  .dashboard-filter-input:focus,
+  .dashboard-filter-select:focus {
+    border-color: hsl(var(--brand-primary) / 0.35);
+    box-shadow: 0 0 0 3px hsl(var(--brand-primary) / 0.12);
+  }
+
+  .dashboard-interactive-row {
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .dashboard-interactive-row:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px hsl(var(--brand-primary) / 0.16);
+  }
+}

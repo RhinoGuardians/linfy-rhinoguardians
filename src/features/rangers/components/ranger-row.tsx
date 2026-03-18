@@ -13,10 +13,12 @@ interface RangerRowProps {
 export function RangerRow({ ranger, isSelected, onSelect }: RangerRowProps) {
   return (
     <button
+      aria-label={`View ranger unit ${ranger.callsign}`}
+      aria-pressed={isSelected}
       className={cn(
-        "w-full rounded-2xl border bg-surface/88 p-4 text-left transition-colors hover:border-brand-primary/20 hover:bg-surface-elevated/80",
+        "dashboard-interactive-row w-full rounded-2xl border bg-surface/88 p-4 text-left hover:border-brand-primary/20 hover:bg-surface-elevated/80",
         isSelected
-          ? "border-brand-primary/35 bg-brand-primary/10"
+          ? "border-brand-primary/35 bg-brand-primary/10 shadow-[0_0_0_1px_rgba(73,130,94,0.08)]"
           : "border-border-subtle/80",
       )}
       onClick={() => onSelect(ranger.id)}

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Download, TimerReset } from "lucide-react";
 
+import { DataSourceBadge } from "@/components/shared/data-source-status";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { fetchAnalyticsSummary } from "@/features/analytics/api";
@@ -66,16 +67,7 @@ export function AnalyticsOverview() {
                 response performance, and reserve-level activity across the
                 RhinoGuardians network.
               </p>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border-subtle/80 bg-canvas/45 px-3 py-2 text-xs font-medium uppercase tracking-[0.18em] text-text-muted">
-                <span
-                  className={
-                    dataSource === "api"
-                      ? "h-2 w-2 rounded-full bg-brand-secondary"
-                      : "h-2 w-2 rounded-full bg-amber-300"
-                  }
-                />
-                {dataSource === "api" ? "Live analytics feed" : "Mock fallback active"}
-              </div>
+              <DataSourceBadge className="w-fit" source={dataSource} />
               <p className="text-sm text-text-muted">{statusMessage}</p>
             </div>
           </div>
@@ -84,7 +76,12 @@ export function AnalyticsOverview() {
               <TimerReset className="h-4 w-4 text-brand-secondary" />
               Reporting period: Last 30 days
             </div>
-            <Button size="sm" type="button" variant="secondary">
+            <Button
+              aria-label="Export analytics report"
+              size="sm"
+              type="button"
+              variant="secondary"
+            >
               <Download className="mr-2 h-4 w-4" />
               Export report
             </Button>

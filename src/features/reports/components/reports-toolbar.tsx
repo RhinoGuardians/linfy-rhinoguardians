@@ -66,7 +66,8 @@ export function ReportsToolbar({
             <div className="relative">
               <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
               <input
-                className="h-11 w-full rounded-xl border border-border-subtle/80 bg-canvas/45 pl-10 pr-4 text-sm text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-brand-primary/35"
+                aria-label="Search reports"
+                className="dashboard-filter-input pl-10"
                 onChange={(event) =>
                   onChange(updateFilter(filters, "search", event.target.value))
                 }
@@ -81,7 +82,8 @@ export function ReportsToolbar({
               Audience
             </span>
             <select
-              className="h-11 w-full rounded-xl border border-border-subtle/80 bg-canvas/45 px-4 text-sm text-text-primary outline-none transition-colors focus:border-brand-primary/35"
+              aria-label="Filter reports by audience"
+              className="dashboard-filter-select"
               onChange={(event) =>
                 onChange(
                   updateFilter(
@@ -106,7 +108,8 @@ export function ReportsToolbar({
               Freshness
             </span>
             <select
-              className="h-11 w-full rounded-xl border border-border-subtle/80 bg-canvas/45 px-4 text-sm text-text-primary outline-none transition-colors focus:border-brand-primary/35"
+              aria-label="Filter reports by freshness"
+              className="dashboard-filter-select"
               onChange={(event) =>
                 onChange(
                   updateFilter(
@@ -127,7 +130,7 @@ export function ReportsToolbar({
           </label>
         </div>
 
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="inline-flex items-center gap-2 rounded-2xl border border-border-subtle/80 bg-canvas/45 px-4 py-3 text-sm text-text-muted">
             <Filter className="h-4 w-4 text-brand-secondary" />
             Reporting options remain grouped for NGO, reserve, operations, and
