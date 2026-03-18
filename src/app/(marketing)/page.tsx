@@ -5,9 +5,14 @@ import {
   BrainCircuit,
   Camera,
   ChartSpline,
+  Fingerprint,
+  GraduationCap,
   MapPinned,
+  Orbit,
+  Radar,
   ShieldCheck,
   Siren,
+  Trees,
   Waypoints,
 } from "lucide-react";
 
@@ -22,34 +27,34 @@ import { appRoutes } from "@/config/routes";
 import { cn } from "@/lib/utils";
 
 const missionPoints = [
-  "Bring live detections, field reports, and reserve visibility into one trusted operating picture.",
-  "Support ranger teams with clearer alerts, faster escalation paths, and stronger coordination in the field.",
-  "Give NGOs, reserve operators, and stakeholders a product-ready system for measurable conservation outcomes.",
+  "Linfy Tech Solutions is building RhinoGuardians to bring disciplined software execution into conservation operations that cannot afford ambiguity.",
+  "The platform connects live detections, field reports, mapped reserve context, and stakeholder visibility in one trusted intelligence layer.",
+  "It is designed for NGOs, reserve operators, grant programs, and partners who need a platform that feels operationally credible from day one.",
 ] as const;
 
 const capabilities = [
   {
-    title: "Real-Time AI Detection",
+    title: "AI Detection With Operational Context",
     description:
-      "Process live camera and sensor inputs to surface rhinos, people, and vehicles with operational context instead of raw noise.",
+      "Surface rhinos, people, and vehicles from live camera and sensor inputs with enough timing, location, and severity context to support real decisions.",
     icon: BrainCircuit,
   },
   {
-    title: "Geo-Tagged Field Intelligence",
+    title: "Reserve-Wide Field Visibility",
     description:
-      "Unify detections, patrol notes, and location-aware events so teams can understand exactly what is happening and where.",
+      "Unify patrol notes, detections, and mapped zone intelligence into one readable operating picture across reserve sectors.",
     icon: MapPinned,
   },
   {
-    title: "Threat Alerting & Ranger Coordination",
+    title: "Threat Escalation And Ranger Coordination",
     description:
-      "Turn risk signals into routed alerts, status updates, and coordinated response workflows across reserve teams.",
+      "Turn risk signals into routed alerts, clear ownership, and coordinated field response workflows across distributed teams.",
     icon: BellRing,
   },
   {
-    title: "Historical Analytics & Reporting",
+    title: "Stakeholder-Grade Reporting",
     description:
-      "Review incidents, trends, and protected-area performance over time with clear reporting for operations and funders.",
+      "Support operational reviews, donor conversations, grant reporting, and leadership oversight with calmer reporting surfaces and historical insight.",
     icon: ChartSpline,
   },
 ] as const;
@@ -57,50 +62,86 @@ const capabilities = [
 const workflowSteps = [
   {
     index: "01",
-    title: "Capture Hardware",
+    title: "Capture Across Reserve Infrastructure",
     description:
-      "Cameras and edge devices collect live imagery and movement signals across reserve perimeters, routes, and high-risk zones.",
+      "Cameras, edge devices, and monitored corridors capture movement and imagery across high-risk routes, perimeters, and wildlife zones.",
   },
   {
     index: "02",
-    title: "Real-Time AI",
+    title: "Interpret With Real-Time AI",
     description:
-      "Detection models classify rhinos, poachers, and vehicles while preserving the timing and location context teams need to act.",
+      "Detection models classify rhinos, vehicles, and threats while preserving the timing and location context that field teams need to act.",
   },
   {
     index: "03",
-    title: "Backend Intelligence Layer",
+    title: "Structure Through A Trusted Data Layer",
     description:
-      "Events are enriched, structured, and prioritized inside a central intelligence layer designed for enterprise-grade workflows.",
+      "Signals are enriched, structured, and prioritized through a central intelligence layer built for enterprise-grade operational workflows.",
   },
   {
     index: "04",
-    title: "Dashboard & Response",
+    title: "Coordinate Response With Clarity",
     description:
-      "Operations teams review alerts, coordinate field actions, and track outcomes from a clear command-center interface.",
+      "Operations teams review alerts, coordinate response, and communicate outcomes through one premium command and reporting surface.",
   },
 ] as const;
 
 const impactPoints = [
   {
-    title: "Faster threat response",
+    title: "Stronger partnership confidence",
     description:
-      "Move from scattered signals to prioritized actions quickly enough to matter in live reserve operations.",
+      "Present a platform that feels credible to conservation partners, reserve operators, grant programs, and long-term funders.",
   },
   {
-    title: "Operational visibility",
+    title: "Operational visibility that scales",
     description:
-      "See activity across reserves, patrol areas, and monitoring zones without depending on fragmented reporting chains.",
+      "Maintain a shared view across reserves, patrol routes, monitored zones, and response teams without fragmented reporting chains.",
   },
   {
-    title: "Conservation credibility",
+    title: "Faster, calmer decision-making",
     description:
-      "Support measurable wildlife protection outcomes with a product that feels trustworthy to NGOs, operators, and investors.",
+      "Move from scattered signals to prioritized action fast enough to matter while preserving clarity for analysts and leadership.",
   },
   {
-    title: "Clarity for distributed teams",
+    title: "Institution-ready conservation reporting",
     description:
-      "Give field teams, analysts, and decision-makers a shared operational picture even when they work across distance and shifts.",
+      "Support measurable conservation outcomes with reporting surfaces that feel ready for stakeholders, audits, and long-term programs.",
+  },
+] as const;
+
+const trustPoints = [
+  {
+    title: "Parent platform discipline",
+    description:
+      "RhinoGuardians is built by Linfy Tech Solutions, a company operating across cybersecurity, digital platforms, and mission-aligned software delivery.",
+    icon: Fingerprint,
+  },
+  {
+    title: "Flagship conservation product",
+    description:
+      "Within the Linfy ecosystem, RhinoGuardians serves as the conservation intelligence platform for wildlife protection, anti-poaching visibility, and reserve coordination.",
+    icon: Trees,
+  },
+  {
+    title: "Broader ecosystem credibility",
+    description:
+      "Linfy also develops adjacent security and education technology, bringing deeper operational rigor, platform thinking, and long-horizon product maturity into conservation work.",
+    icon: Orbit,
+  },
+] as const;
+
+const proofBand = [
+  {
+    label: "Built by",
+    value: "Linfy Tech Solutions",
+  },
+  {
+    label: "Positioning",
+    value: "AI-powered conservation intelligence",
+  },
+  {
+    label: "Audience fit",
+    value: "NGOs, reserve operators, partners, investors",
   },
 ] as const;
 
@@ -111,17 +152,18 @@ export default function LandingPage() {
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)] lg:items-center">
           <div className="space-y-8">
             <Badge className="border border-brand-primary/20 bg-brand-primary/10 text-brand-secondary">
-              AI-powered conservation intelligence
+              Flagship conservation intelligence platform
             </Badge>
             <div className="space-y-6">
               <h1 className="max-w-4xl font-[var(--font-display)] text-5xl leading-[1.02] text-text-primary md:text-6xl xl:text-7xl">
-                Real-time intelligence for wildlife protection, reserve security,
-                and calmer operational decisions.
+                AI-powered conservation intelligence for wildlife protection,
+                anti-poaching visibility, and reserve operations.
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-text-muted md:text-xl">
-                RhinoGuardians helps conservation teams detect rhinos, poachers,
-                and vehicles in real time, connect field intelligence to mapped
-                context, and coordinate action from one premium command center.
+                RhinoGuardians is Linfy Tech Solutions&apos; flagship conservation
+                platform, built to help reserves, NGOs, and operational partners
+                detect wildlife and threats in real time, coordinate response,
+                and report with confidence from one premium system.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -129,20 +171,20 @@ export default function LandingPage() {
                 className={cn(buttonVariants({ size: "lg" }), "group gap-2")}
                 href={appRoutes.signUp}
               >
-                Request demo
+                Book partnership demo
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link
                 className={buttonVariants({ size: "lg", variant: "secondary" })}
                 href={appRoutes.dashboard}
               >
-                View platform
+                Explore platform
               </Link>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
-              <MarketingMetricChip label="Detection status" value="Live monitoring" />
-              <MarketingMetricChip label="Reserve coverage" value="Zone-based visibility" />
-              <MarketingMetricChip label="Response model" value="Alert-driven operations" />
+              <MarketingMetricChip label="Detection posture" value="Real-time monitoring" />
+              <MarketingMetricChip label="Reserve model" value="Zone-aware operations" />
+              <MarketingMetricChip label="Delivery standard" value="Platform-grade discipline" />
             </div>
           </div>
           <Card className="overflow-hidden border-border-subtle/80 bg-surface/85 shadow-[0_30px_70px_-30px_rgba(8,26,18,0.9)] backdrop-blur">
@@ -150,14 +192,14 @@ export default function LandingPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-secondary">
-                    Live operations preview
+                    Flagship platform preview
                   </p>
                   <h2 className="mt-2 text-2xl font-semibold text-text-primary">
-                    Reserve monitoring at a glance
+                    Conservation operations at launch quality
                   </h2>
                 </div>
                 <div className="rounded-full border border-status-success/20 bg-status-success/10 px-3 py-1 text-xs font-semibold text-status-success">
-                  All systems connected
+                  Operational preview
                 </div>
               </div>
               <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
@@ -168,7 +210,7 @@ export default function LandingPage() {
                         Eastern perimeter intelligence
                       </p>
                       <p className="text-xs uppercase tracking-[0.2em] text-text-muted">
-                        Reserve map snapshot
+                        Live reserve command view
                       </p>
                     </div>
                     <Waypoints className="h-5 w-5 text-brand-secondary" />
@@ -188,11 +230,11 @@ export default function LandingPage() {
                     ))}
                     <div className="col-span-3 flex items-center gap-2 rounded-2xl border border-brand-primary/30 bg-brand-primary/10 px-3 py-2 text-xs text-text-primary">
                       <Camera className="h-4 w-4 text-brand-secondary" />
-                      Corridor camera cluster online
+                      Corridor camera network online
                     </div>
                     <div className="col-span-3 flex items-center gap-2 rounded-2xl border border-status-danger/30 bg-status-danger/10 px-3 py-2 text-xs text-text-primary">
                       <Siren className="h-4 w-4 text-status-danger" />
-                      Suspicious vehicle route flagged
+                      Suspicious vehicle corridor escalated
                     </div>
                   </div>
                 </div>
@@ -208,7 +250,7 @@ export default function LandingPage() {
                     </div>
                     <div className="rounded-2xl border border-border-subtle/80 bg-canvas/70 p-4">
                       <p className="text-xs uppercase tracking-[0.2em] text-text-muted">
-                        Ranger teams online
+                        Ranger units visible
                       </p>
                       <p className="mt-3 text-3xl font-semibold text-text-primary">
                         7
@@ -217,24 +259,24 @@ export default function LandingPage() {
                   </div>
                   <div className="rounded-2xl border border-border-subtle/80 bg-canvas/70 p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-text-primary">Live intelligence feed</p>
+                      <p className="text-sm font-medium text-text-primary">Operational intelligence feed</p>
                       <ShieldCheck className="h-4 w-4 text-brand-secondary" />
                     </div>
                     <div className="mt-4 space-y-3">
                       {[
                         {
                           title: "Rhino herd movement verified",
-                          detail: "Northern waterline · 2 min ago",
+                          detail: "Northern waterline corridor · 2 min ago",
                           tone: "success",
                         },
                         {
-                          title: "Possible vehicle detected",
-                          detail: "Eastern perimeter · 5 min ago",
+                          title: "Vehicle intrusion route flagged",
+                          detail: "Eastern perimeter sector · 5 min ago",
                           tone: "danger",
                         },
                         {
-                          title: "Patrol waypoint updated",
-                          detail: "Sector B3 · 8 min ago",
+                          title: "Patrol coordination update logged",
+                          detail: "Sector B3 command sync · 8 min ago",
                           tone: "neutral",
                         },
                       ].map((item) => (
@@ -268,12 +310,30 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 md:py-20" id="product">
+      <section className="mx-auto max-w-7xl px-6 py-6 md:py-8">
+        <div className="grid gap-3 rounded-[2rem] border border-border-subtle/80 bg-surface/55 p-5 backdrop-blur-sm md:grid-cols-3 md:p-6">
+          {proofBand.map((item) => (
+            <div
+              className="rounded-2xl border border-border-subtle/70 bg-canvas/45 px-4 py-4"
+              key={item.label}
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-text-muted">
+                {item.label}
+              </p>
+              <p className="mt-2 text-base font-semibold text-text-primary">
+                {item.value}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20" id="product">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-start">
           <SectionHeading
-            eyebrow="Mission and value"
-            title="Built for the real pressure of wildlife protection, not just the idea of it."
-            description="RhinoGuardians is designed for conservation teams that need operational clarity under field conditions. It connects reserve monitoring, AI detections, and response workflows into one platform that feels calm, credible, and immediately usable."
+            eyebrow="Why Linfy built RhinoGuardians"
+            title="Conservation technology with the operational discipline of a broader platform company."
+            description="Linfy Tech Solutions builds RhinoGuardians because wildlife protection deserves the same rigor, reliability, and product maturity expected in security technology and digital platforms. The result is a conservation system that feels mission-driven without feeling experimental."
           />
           <div className="grid gap-4">
             {missionPoints.map((point) => (
@@ -291,12 +351,83 @@ export default function LandingPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
+        <div
+          className="space-y-10 rounded-[2rem] border border-border-subtle/80 bg-surface/55 p-8 backdrop-blur-sm md:p-10"
+          id="ecosystem"
+        >
+          <SectionHeading
+            eyebrow="Linfy ecosystem"
+            title="A conservation flagship inside a broader technology ecosystem."
+            description="RhinoGuardians sits inside the Linfy Tech Solutions ecosystem, where mission-led software benefits from deeper experience across cybersecurity, digital platforms, and education technology. That broader context strengthens trust without distracting from the conservation mission."
+          />
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Linfy Tech Solutions",
+                description:
+                  "Parent brand for security technology, digital platforms, and conservation software delivery.",
+                icon: Radar,
+              },
+              {
+                title: "Security and platform discipline",
+                description:
+                  "Operational rigor shaped by Linfy’s broader work in high-trust software and security-oriented systems.",
+                icon: Orbit,
+              },
+              {
+                title: "Education and enablement",
+                description:
+                  "A wider ecosystem that also includes training and knowledge-led technology initiatives.",
+                icon: GraduationCap,
+              },
+            ].map((item) => (
+              <div
+                className="rounded-2xl border border-border-subtle/70 bg-canvas/45 p-5"
+                key={item.title}
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-brand-primary/20 bg-brand-primary/10 text-brand-secondary">
+                  <item.icon className="h-5 w-5" />
+                </div>
+                <div className="mt-4 space-y-2">
+                  <p className="text-base font-semibold text-text-primary">
+                    {item.title}
+                  </p>
+                  <p className="text-sm leading-7 text-text-muted">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {trustPoints.map((point) => (
+              <Card className="border-border-subtle/80 bg-canvas/55" key={point.title}>
+                <CardContent className="space-y-5 p-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-brand-primary/20 bg-brand-primary/10 text-brand-secondary">
+                    <point.icon className="h-5 w-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-semibold text-text-primary">
+                      {point.title}
+                    </h3>
+                    <p className="text-sm leading-7 text-text-muted">
+                      {point.description}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 md:py-20">
         <div className="space-y-10">
           <SectionHeading
             align="center"
             eyebrow="Core capabilities"
-            title="A product foundation that supports detection, intelligence, and response."
-            description="RhinoGuardians combines field-ready workflows with executive-grade visibility, so teams can move from signal to action without losing trust in the system."
+            title="Capability surfaces designed for real conservation operations and stakeholder trust."
+            description="RhinoGuardians combines field-ready workflows with reporting-grade visibility so teams can move from signal to action without compromising credibility with leadership, partners, or funders."
           />
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {capabilities.map((capability) => (
@@ -315,8 +446,8 @@ export default function LandingPage() {
         <div className="space-y-10">
           <SectionHeading
             eyebrow="How it works"
-            title="A clear system path from capture to operational response."
-            description="The platform architecture follows the real flow of conservation intelligence: collect signals, interpret them with AI, structure them in a backend intelligence layer, and deliver clear actions through the dashboard."
+            title="A disciplined path from signal capture to coordinated action."
+            description="The architecture follows the practical flow of conservation intelligence: capture field signals, interpret them with AI, structure them through a trusted data layer, and deliver clear decision support through the platform."
           />
           <div className="relative grid gap-5 xl:grid-cols-4">
             <div className="absolute left-[12.5%] right-[12.5%] top-7 hidden border-t border-dashed border-brand-primary/25 xl:block" />
@@ -336,8 +467,8 @@ export default function LandingPage() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
           <SectionHeading
             eyebrow="Platform preview"
-            title="A dashboard experience that feels like a calm command center."
-            description="This preview shows how RhinoGuardians can present summary metrics, live activity, reserve zones, and alert status without overwhelming the teams who rely on it."
+            title="A product surface designed for live operations, partner confidence, and executive clarity."
+            description="This preview shows how RhinoGuardians presents summary metrics, mapped reserve context, and live activity in a way that supports analysts, field operators, reserve leadership, and institutional stakeholders."
           />
           <Card className="overflow-hidden border-border-subtle/80 bg-surface/85">
             <CardContent className="space-y-6 p-6">
@@ -349,18 +480,18 @@ export default function LandingPage() {
                     </p>
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       <MarketingMetricChip label="Open alerts" value="05" />
-                      <MarketingMetricChip label="Monitored zones" value="24" />
+                      <MarketingMetricChip label="Protected zones" value="24" />
                     </div>
                   </div>
                   <div className="rounded-2xl border border-border-subtle/80 bg-canvas/70 p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-text-primary">Alert statuses</p>
+                      <p className="text-sm font-medium text-text-primary">Escalation posture</p>
                       <BellRing className="h-4 w-4 text-brand-secondary" />
                     </div>
                     <div className="mt-4 space-y-3">
                       {[
                         ["Priority response", "2 active", "bg-status-danger"],
-                        ["Under review", "3 active", "bg-brand-secondary"],
+                        ["Analyst review", "3 active", "bg-brand-secondary"],
                         ["Resolved today", "11 logged", "bg-status-success"],
                       ].map(([label, value, tone]) => (
                         <div className="flex items-center justify-between rounded-2xl border border-border-subtle/70 bg-surface/60 px-4 py-3" key={label}>
@@ -379,7 +510,7 @@ export default function LandingPage() {
                 <div className="space-y-4">
                   <div className="rounded-2xl border border-border-subtle/80 bg-canvas/70 p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-text-primary">Reserve zones</p>
+                      <p className="text-sm font-medium text-text-primary">Protected reserve zones</p>
                       <MapPinned className="h-4 w-4 text-brand-secondary" />
                     </div>
                     <div className="mt-4 grid grid-cols-3 gap-3">
@@ -408,14 +539,14 @@ export default function LandingPage() {
                   </div>
                   <div className="rounded-2xl border border-border-subtle/80 bg-canvas/70 p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-text-primary">Live activity feed</p>
+                      <p className="text-sm font-medium text-text-primary">Live coordination feed</p>
                       <Waypoints className="h-4 w-4 text-brand-secondary" />
                     </div>
                     <div className="mt-4 space-y-3">
                       {[
-                        "Thermal camera heartbeat confirmed in Sector C1",
-                        "Field team sync completed for evening patrol route",
-                        "Vehicle alert escalated to reserve operations lead",
+                        "Thermal camera network heartbeat confirmed in Sector C1",
+                        "Field team briefing synced for evening perimeter patrol",
+                        "Vehicle alert escalated to reserve operations leadership",
                       ].map((item) => (
                         <div
                           className="rounded-2xl border border-border-subtle/70 bg-surface/60 px-4 py-3 text-sm text-text-muted"
@@ -437,9 +568,9 @@ export default function LandingPage() {
         <div className="space-y-10">
           <SectionHeading
             align="center"
-            eyebrow="Why RhinoGuardians matters"
-            title="A clearer operating picture can change the quality and speed of conservation response."
-            description="The value of RhinoGuardians is not just in detection accuracy. It is in helping distributed teams see the same truth sooner, coordinate more effectively, and protect wildlife with stronger operational discipline."
+            eyebrow="Proof and outcomes"
+            title="The value is not only in detection. It is in trust, coordination, and measurable operational readiness."
+            description="RhinoGuardians is designed to help conservation stakeholders move faster, report more clearly, and operate with the confidence expected from a serious platform by Linfy Tech Solutions."
           />
           <div className="grid gap-5 md:grid-cols-2">
             {impactPoints.map((point) => (
@@ -459,16 +590,16 @@ export default function LandingPage() {
           <CardContent className="flex flex-col gap-8 p-8 md:p-10 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl space-y-4">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-secondary">
-                Final call to action
+                Launch-ready engagement
               </p>
               <h2 className="font-[var(--font-display)] text-4xl leading-tight text-text-primary">
-                Bring reserve monitoring, live intelligence, and response
-                workflows into one trusted platform.
+                Bring reserve intelligence, wildlife protection, and stakeholder
+                confidence into one trusted platform.
               </h2>
               <p className="text-base leading-7 text-text-muted md:text-lg">
-                RhinoGuardians is built to support operators, NGOs, and field
-                teams with a conservation-first product that feels premium,
-                practical, and ready for serious deployment.
+                RhinoGuardians is built for NGOs, reserve operators, partners,
+                investors, and mission-driven stakeholders who need a conservation
+                platform that feels premium, credible, and ready for public-facing deployment.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -476,14 +607,14 @@ export default function LandingPage() {
                 className={cn(buttonVariants({ size: "lg" }), "group gap-2")}
                 href={appRoutes.signUp}
               >
-                Request demo
+                Book partnership demo
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <a
                 className={buttonVariants({ size: "lg", variant: "secondary" })}
                 href="#contact"
               >
-                Contact Linfy
+                Contact Linfy Tech
               </a>
             </div>
           </CardContent>

@@ -88,8 +88,8 @@ export function DetectionDetailPanel({
               Response note
             </div>
             <p className="mt-2 text-sm leading-6 text-text-muted">
-              Response workflow placeholder: assign ranger escalation, confirm
-              visual evidence, and log analyst notes for incident continuity.
+              Response workflow: assign ranger escalation, confirm visual
+              evidence, and maintain analyst notes for incident continuity.
             </p>
           </div>
           <div className="rounded-2xl border border-border-subtle/80 bg-canvas/45 p-4">
@@ -98,9 +98,8 @@ export function DetectionDetailPanel({
               Related alert context
             </div>
             <p className="mt-2 text-sm leading-6 text-text-muted">
-              Related incident placeholder: this detection can be linked to a
-              future alert or reporting workflow once backend case data is
-              available.
+              This detection can be linked to future alert and reporting
+              workflows once case coordination data is available.
             </p>
           </div>
         </div>

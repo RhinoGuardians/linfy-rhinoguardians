@@ -18,9 +18,24 @@ const displayFont = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "RhinoGuardians",
+  title: {
+    default: "RhinoGuardians by Linfy Tech Solutions",
+    template: "%s | RhinoGuardians",
+  },
   description:
-    "Enterprise wildlife conservation and anti-poaching intelligence platform by Linfy Tech Solutions.",
+    "AI-powered conservation intelligence platform by Linfy Tech Solutions for wildlife protection, anti-poaching visibility, and reserve operations.",
+  icons: {
+    icon: "/brand/rhinoguardians-favicon.svg",
+    shortcut: "/brand/rhinoguardians-favicon.svg",
+    apple: "/brand/rhinoguardians-favicon.svg",
+  },
+  openGraph: {
+    title: "RhinoGuardians by Linfy Tech Solutions",
+    description:
+      "AI-powered conservation intelligence platform for wildlife protection, anti-poaching visibility, and reserve operations.",
+    siteName: "RhinoGuardians",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { StatusChip } from "@/components/shared/status-chip";
 import type {
   ApiConnectionStatus,
   SettingsSummaryItem,
@@ -82,7 +83,7 @@ export function SettingsStatusBadge({
   }
 
   if (kind === "summary-tone") {
-    className = toneClasses[value as SettingsSummaryItem["tone"]];
+    return <StatusChip tone={value as SettingsSummaryItem["tone"]}>{value}</StatusChip>;
   }
 
   return <Badge className={cn("px-3 py-1 text-xs", className)}>{label}</Badge>;

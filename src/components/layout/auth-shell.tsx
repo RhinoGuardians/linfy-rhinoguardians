@@ -16,7 +16,7 @@ export function AuthShell({ children, title, description }: AuthShellProps) {
       <div className="relative w-full max-w-md space-y-8">
         <div className="space-y-4 text-center">
           <div className="flex justify-center">
-            <Logo />
+            <Logo priority />
           </div>
           <div className="space-y-2">
             <h1 className="font-[var(--font-display)] text-4xl text-text-primary">
@@ -24,7 +24,7 @@ export function AuthShell({ children, title, description }: AuthShellProps) {
             </h1>
             <p className="text-sm leading-7 text-text-muted">{description}</p>
             <p className="text-xs uppercase tracking-[0.24em] text-text-muted/80">
-              Powered by Linfy Tech Solutions
+              Flagship platform by Linfy Tech Solutions
             </p>
           </div>
         </div>

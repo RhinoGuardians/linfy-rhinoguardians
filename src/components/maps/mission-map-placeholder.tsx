@@ -5,11 +5,11 @@ export function MissionMapPlaceholder() {
     <Card className="border-dashed">
       <CardContent className="space-y-2">
         <h2 className="text-lg font-semibold text-text-primary">
-          Map component placeholder
+          Shared map workspace
         </h2>
         <p className="text-sm text-text-muted">
-          Future React Leaflet wrappers should live in `components/maps` so map
-          concerns stay reusable across dashboard features.
+          Shared React Leaflet wrappers live in `components/maps` so geospatial
+          experiences stay consistent across operational dashboard modules.
         </p>
       </CardContent>
     </Card>

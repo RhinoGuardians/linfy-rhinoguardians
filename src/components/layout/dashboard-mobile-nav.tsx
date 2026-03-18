@@ -31,7 +31,7 @@ export function DashboardMobileNav({
       />
       <div className="absolute left-0 top-0 h-full w-[min(90vw,22rem)] border-r border-border-subtle/80 bg-surface p-5 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.75)]">
         <div className="flex items-center justify-between border-b border-border-subtle/80 pb-5">
-          <Logo />
+          <Logo supportingText="Linfy Tech Solutions" variant="mark" />
           <Button onClick={onClose} size="sm" type="button" variant="ghost">
             <X className="h-4 w-4" />
           </Button>
@@ -56,4 +56,3 @@ export function DashboardMobileNav({
     </div>
   );
 }
-

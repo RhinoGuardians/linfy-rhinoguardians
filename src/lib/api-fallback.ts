@@ -1,6 +1,7 @@
 import axios from "axios";
 
 type BackendAvailabilityScope =
+  | "analytics"
   | "detections"
   | "rangers"
   | "reports"

@@ -10,7 +10,7 @@ export function DashboardSidebar({ pathname }: DashboardSidebarProps) {
   return (
     <aside className="hidden min-h-[calc(100vh-2rem)] rounded-[1.75rem] border border-border-subtle/80 bg-surface/85 p-5 shadow-[0_28px_70px_-36px_rgba(6,16,12,0.95)] backdrop-blur lg:flex lg:flex-col">
       <div className="space-y-4 border-b border-border-subtle/80 pb-5">
-        <Logo />
+        <Logo supportingText="Linfy Tech Solutions" variant="mark" />
         <div className="space-y-1">
           <p className="text-sm font-medium text-text-primary">
             Conservation Operations Platform

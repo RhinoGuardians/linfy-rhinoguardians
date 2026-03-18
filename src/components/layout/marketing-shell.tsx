@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 const marketingNavLinks = [
   { label: "Product", href: "#product" },
+  { label: "Trust", href: "#ecosystem" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Impact", href: "#impact" },
   { label: "Contact", href: "#contact" },
@@ -20,10 +21,7 @@ export function MarketingShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b border-border-subtle/70 bg-canvas/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5">
           <div className="flex items-center gap-4">
-            <Logo />
-            <span className="hidden text-xs uppercase tracking-[0.24em] text-text-muted lg:inline-flex">
-              by Linfy Tech Solutions
-            </span>
+            <Logo priority />
           </div>
           <nav className="hidden items-center gap-8 md:flex">
             {marketingNavLinks.map((item) => (
@@ -63,7 +61,7 @@ export function MarketingShell({ children }: { children: ReactNode }) {
               href={appRoutes.signUp}
               prefetch={false}
             >
-              Request demo
+              Book partnership demo
             </Link>
           </div>
         </div>
@@ -74,24 +72,26 @@ export function MarketingShell({ children }: { children: ReactNode }) {
           <div className="space-y-4">
             <Logo />
             <p className="max-w-md text-sm leading-7 text-text-muted">
-              RhinoGuardians by Linfy Tech Solutions equips conservation teams
-              with clearer operational visibility, faster threat response, and
-              a trusted intelligence layer for reserve protection.
+              RhinoGuardians is a flagship conservation intelligence platform by
+              Linfy Tech Solutions, built to support wildlife protection,
+              anti-poaching visibility, and reserve operations with the rigor of
+              a broader technology ecosystem.
             </p>
           </div>
           <div className="space-y-4">
             <p className="text-sm font-semibold text-text-primary">Platform</p>
             <div className="flex flex-col gap-3 text-sm text-text-muted">
               <a href="#product">Product</a>
+              <a href="#ecosystem">Trust</a>
               <a href="#how-it-works">How It Works</a>
               <a href="#impact">Impact</a>
             </div>
           </div>
           <div className="space-y-4">
-            <p className="text-sm font-semibold text-text-primary">Company</p>
+            <p className="text-sm font-semibold text-text-primary">Linfy Tech Solutions</p>
             <div className="flex flex-col gap-3 text-sm text-text-muted">
               <Link href={appRoutes.signIn}>Sign in</Link>
-              <Link href={appRoutes.signUp}>Request demo</Link>
+              <Link href={appRoutes.signUp}>Book partnership demo</Link>
               <a href="mailto:contact@linfy.tech">contact@linfy.tech</a>
             </div>
           </div>
@@ -99,7 +99,7 @@ export function MarketingShell({ children }: { children: ReactNode }) {
         <div className="border-t border-border-subtle/70">
           <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-5 text-sm text-text-muted md:flex-row md:items-center md:justify-between">
             <p>RhinoGuardians by Linfy Tech Solutions</p>
-            <p>Conservation intelligence for reserves, NGOs, and field operations.</p>
+            <p>AI-powered conservation intelligence inside the broader Linfy technology ecosystem.</p>
           </div>
         </div>
       </footer>

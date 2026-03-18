@@ -124,9 +124,9 @@ export function ReportPreviewPanel({ report }: ReportPreviewPanelProps) {
             Distribution notes
           </div>
           <p className="mt-2 text-sm leading-6 text-text-muted">
-            Distribution workflow placeholder: route this report to partner NGOs,
+            Distribution workflows can route this report to partner NGOs,
             reserve leadership, operations teams, or investor stakeholders once
-            backend distribution rules are available.
+            delivery rules are connected.
           </p>
         </div>
       </CardContent>

@@ -1,6 +1,10 @@
 import { apiConfig } from "@/config/api";
 import { analyticsPageData } from "@/features/analytics/mock/analytics-data";
 import type { AnalyticsPageData } from "@/features/analytics/types";
+import {
+  markBackendUnavailable,
+  shouldUseFastMockFallback,
+} from "@/lib/api-fallback";
 import { apiClient, getApiFallbackMessage, unwrapApiResponse } from "@/lib/axios";
 import type { ApiResponse, DataRequestResult } from "@/types";
 
@@ -38,6 +42,15 @@ export async function fetchAnalyticsSummary(): Promise<
     };
   }
 
+  if (shouldUseFastMockFallback("analytics")) {
+    return {
+      data: getMockAnalyticsSummary(),
+      source: "mock",
+      message: "Backend unavailable. Using cached mock fallback for analytics.",
+      updatedAt: getUpdatedAt(),
+    };
+  }
+
   try {
     const response = await apiClient.get<
       ApiResponse<AnalyticsPageData> | AnalyticsPageData
@@ -49,6 +62,10 @@ export async function fetchAnalyticsSummary(): Promise<
       updatedAt: getUpdatedAt(),
     };
   } catch (error) {
+    if (shouldUseFastMockFallback("analytics", error)) {
+      markBackendUnavailable("analytics");
+    }
+
     return {
       data: getMockAnalyticsSummary(),
       source: "mock",

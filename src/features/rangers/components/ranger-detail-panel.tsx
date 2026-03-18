@@ -116,7 +116,7 @@ export function RangerDetailPanel({ ranger }: RangerDetailPanelProps) {
             </div>
             <p className="mt-2 text-sm leading-6 text-text-muted">
               {ranger.notes ??
-                "Dispatch notes placeholder for analyst instructions and field updates."}
+                "Dispatch notes are reserved for analyst instructions, patrol adjustments, and field updates."}
             </p>
           </div>
         </div>
