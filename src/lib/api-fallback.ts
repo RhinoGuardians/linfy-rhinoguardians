@@ -1,6 +1,10 @@
 import axios from "axios";
 
-type BackendAvailabilityScope = "detections" | "rangers" | "reports";
+type BackendAvailabilityScope =
+  | "detections"
+  | "rangers"
+  | "reports"
+  | "settings";
 
 const unavailableScopes = new Set<BackendAvailabilityScope>();
 
