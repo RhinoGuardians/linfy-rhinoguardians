@@ -28,6 +28,19 @@
   --status-success: 141 45% 54%;
 }
 
+.dashboard-theme {
+  --bg-canvas: 210 22% 8%;
+  --bg-surface: 210 20% 12%;
+  --bg-surface-elevated: 210 18% 16%;
+  --text-primary: 48 25% 95%;
+  --text-muted: 210 12% 72%;
+  --border-subtle: 210 14% 22%;
+  --brand-primary: 145 38% 42%;
+  --brand-secondary: 152 24% 59%;
+  --status-danger: 11 82% 60%;
+  --status-success: 141 45% 54%;
+}
+
 * {
   border-color: hsl(var(--border-subtle));
 }
@@ -48,6 +61,14 @@ body {
     radial-gradient(circle at top left, hsl(var(--brand-primary) / 0.18), transparent 28%),
     radial-gradient(circle at 85% 12%, hsl(var(--brand-secondary) / 0.12), transparent 26%),
     linear-gradient(180deg, hsl(154 28% 9%), hsl(155 24% 7%));
+  color: hsl(var(--text-primary));
+}
+
+.dashboard-theme {
+  background:
+    radial-gradient(circle at top, hsl(var(--brand-primary) / 0.12), transparent 28%),
+    radial-gradient(circle at bottom right, hsl(var(--brand-secondary) / 0.1), transparent 24%),
+    linear-gradient(180deg, hsl(210 24% 9%), hsl(210 22% 7%));
   color: hsl(var(--text-primary));
 }
 

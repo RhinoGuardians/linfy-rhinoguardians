@@ -20,5 +20,14 @@ export const themeTokens = {
     statusDanger: "12 76% 54%",
     statusSuccess: "132 33% 38%",
   },
+  dashboard: {
+    bgCanvas: "210 22% 8%",
+    bgSurface: "210 20% 12%",
+    bgSurfaceElevated: "210 18% 16%",
+    textPrimary: "48 25% 95%",
+    textMuted: "210 12% 72%",
+    borderSubtle: "210 14% 22%",
+    brandPrimary: "145 38% 42%",
+    brandSecondary: "152 24% 59%",
+  },
 } as const;
-

@@ -4,9 +4,10 @@ export const apiConfig = {
   endpoints: {
     auth: "/api/v1/auth",
     dashboard: "/api/v1/dashboard",
+    detections: "/api/v1/detections",
     analytics: "/api/v1/analytics",
-    history: "/api/v1/history",
+    rangers: "/api/v1/rangers",
+    reports: "/api/v1/reports",
     settings: "/api/v1/settings",
   },
 } as const;
-

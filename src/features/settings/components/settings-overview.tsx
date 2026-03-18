@@ -1,19 +1,12 @@
-import { EmptyState } from "@/components/shared/empty-state";
-import { PageHeader } from "@/components/shared/page-header";
+import { DashboardPlaceholderPanel } from "@/components/shared/dashboard-placeholder-panel";
 
 export function SettingsOverview() {
   return (
-    <div className="space-y-8 p-8">
-      <PageHeader
-        eyebrow="Settings"
-        title="Platform configuration"
-        description="This page will grow into workspace, organization, and integration settings for enterprise operators."
-      />
-      <EmptyState
-        title="Settings scaffold is ready"
-        description="Add profile, access control, notification, and system preference modules here as the product grows."
+    <div className="space-y-6">
+      <DashboardPlaceholderPanel
+        description="Use this surface for organization settings, workspace controls, integrations, and enterprise preference management."
+        title="Settings placeholder surface"
       />
     </div>
   );
 }
-

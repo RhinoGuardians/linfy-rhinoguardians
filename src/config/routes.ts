@@ -3,10 +3,11 @@ export const appRoutes = {
   signIn: "/sign-in",
   signUp: "/sign-up",
   dashboard: "/dashboard",
+  detections: "/dashboard/detections",
   analytics: "/dashboard/analytics",
-  history: "/dashboard/history",
+  rangers: "/dashboard/rangers",
+  reports: "/dashboard/reports",
   settings: "/dashboard/settings",
 } as const;
 
 export type AppRoute = (typeof appRoutes)[keyof typeof appRoutes];
-

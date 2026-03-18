@@ -3,4 +3,3 @@ import { AnalyticsOverview } from "@/features/analytics/components/analytics-ove
 export default function AnalyticsPage() {
   return <AnalyticsOverview />;
 }
-
