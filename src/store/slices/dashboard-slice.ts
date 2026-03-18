@@ -10,6 +10,7 @@ import type {
 import { commandCenterMockState } from "@/features/dashboard/mock/command-center";
 
 export interface DashboardSliceState {
+  isHydrated: boolean;
   liveEvents: LiveEvent[];
   selectedEventId: string | null;
   summaryMetrics: SummaryMetric[];
@@ -33,6 +34,7 @@ export interface DashboardSliceActions {
 export type DashboardSlice = DashboardSliceState & DashboardSliceActions;
 
 export const dashboardInitialState: DashboardSliceState = {
+  isHydrated: false,
   liveEvents: [],
   selectedEventId: null,
   summaryMetrics: [],
@@ -61,14 +63,20 @@ export function createDashboardSlice(
     setReserveOverview: (items) => set({ reserveOverview: items }),
     setRecentIncidents: (incidents) => set({ recentIncidents: incidents }),
     hydrateFromMockData: () =>
-      set({
-        liveEvents: [...commandCenterMockState.liveEvents],
-        selectedEventId: commandCenterMockState.liveEvents[0]?.id ?? null,
-        summaryMetrics: [...commandCenterMockState.summaryMetrics],
-        reserveZones: [...commandCenterMockState.reserveZones],
-        reserveOverview: [...commandCenterMockState.reserveOverview],
-        recentIncidents: [...commandCenterMockState.recentIncidents],
+      set((state) => {
+        if (state.isHydrated) {
+          return state;
+        }
+
+        return {
+          isHydrated: true,
+          liveEvents: [...commandCenterMockState.liveEvents],
+          selectedEventId: commandCenterMockState.liveEvents[0]?.id ?? null,
+          summaryMetrics: [...commandCenterMockState.summaryMetrics],
+          reserveZones: [...commandCenterMockState.reserveZones],
+          reserveOverview: [...commandCenterMockState.reserveOverview],
+          recentIncidents: [...commandCenterMockState.recentIncidents],
+        };
       }),
   };
 }
-

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { CommandCenterKpiCard } from "@/features/dashboard/components/command-center-kpi-card";
@@ -13,21 +13,26 @@ import { useAppStore } from "@/store";
 
 export function DashboardOverview() {
   const hydrateFromMockData = useAppStore((state) => state.hydrateFromMockData);
+  const isHydrated = useAppStore((state) => state.isHydrated);
   const summaryMetrics = useAppStore((state) => state.summaryMetrics);
   const liveEvents = useAppStore((state) => state.liveEvents);
   const reserveZones = useAppStore((state) => state.reserveZones);
   const reserveOverview = useAppStore((state) => state.reserveOverview);
-  const recentIncidents = useAppStore((state) =>
-    selectRecentIncidents(state.recentIncidents),
-  );
+  const recentIncidents = useAppStore((state) => state.recentIncidents);
   const selectedEventId = useAppStore((state) => state.selectedEventId);
   const setSelectedEvent = useAppStore((state) => state.setSelectedEvent);
+  const hasRequestedHydration = useRef(false);
+  const visibleRecentIncidents = useMemo(
+    () => selectRecentIncidents(recentIncidents),
+    [recentIncidents],
+  );
 
   useEffect(() => {
-    if (liveEvents.length === 0) {
+    if (!isHydrated && !hasRequestedHydration.current) {
+      hasRequestedHydration.current = true;
       hydrateFromMockData();
     }
-  }, [hydrateFromMockData, liveEvents.length]);
+  }, [hydrateFromMockData, isHydrated]);
 
   return (
     <div className="space-y-6">
@@ -89,7 +94,7 @@ export function DashboardOverview() {
               </p>
             </div>
             <div className="space-y-3">
-              {recentIncidents.map((incident) => (
+              {visibleRecentIncidents.map((incident) => (
                 <IncidentRow incident={incident} key={incident.id} />
               ))}
             </div>
