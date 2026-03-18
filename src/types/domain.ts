@@ -60,8 +60,15 @@ export interface ReserveOverviewItem {
 
 export interface RangerUnit {
   id: string;
+  callsign: string;
   teamName: string;
-  status: "available" | "deployed" | "offline";
+  status: "online" | "deployed" | "standby" | "offline";
+  assignedZone: string;
+  lastActivityAt: string;
+  communicationStatus: "connected" | "intermittent" | "offline";
+  readinessScore: number;
+  activeIncidentCount: number;
+  notes?: string;
 }
 
 export interface Incident {
@@ -78,4 +85,3 @@ export interface ReportSummary {
   title: string;
   generatedAt: string;
 }
-

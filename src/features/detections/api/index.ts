@@ -1,6 +1,10 @@
 import { apiConfig } from "@/config/api";
 import { detectionsWorkspaceMockData } from "@/features/detections/mock/detections-data";
 import type { DetectionsWorkspaceData } from "@/features/detections/types";
+import {
+  markBackendUnavailable,
+  shouldUseFastMockFallback,
+} from "@/lib/api-fallback";
 import { apiClient, getApiFallbackMessage, unwrapApiResponse } from "@/lib/axios";
 import type { ApiResponse, DataRequestResult, LiveEvent, ReserveZone } from "@/types";
 
@@ -85,6 +89,16 @@ export async function fetchDetectionsWorkspace(): Promise<
     };
   }
 
+  if (shouldUseFastMockFallback("detections")) {
+    return {
+      data: cloneWorkspaceData(),
+      source: "mock",
+      message:
+        "Backend unavailable. Using cached mock fallback for detections.",
+      updatedAt: getUpdatedAt(),
+    };
+  }
+
   try {
     const [detectionsResponse, zonesResponse] = await Promise.all([
       fetchDetections(),
@@ -106,6 +120,10 @@ export async function fetchDetectionsWorkspace(): Promise<
       updatedAt: getUpdatedAt(),
     };
   } catch (error) {
+    if (shouldUseFastMockFallback("detections", error)) {
+      markBackendUnavailable("detections");
+    }
+
     return {
       data: cloneWorkspaceData(),
       source: "mock",
