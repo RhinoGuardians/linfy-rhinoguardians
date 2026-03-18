@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -42,10 +43,25 @@ export function DashboardShell({ children }: { children: ReactNode }) {
           </nav>
         </aside>
         <div className="rounded-2xl border border-border-subtle bg-surface shadow-card">
+          <div className="flex items-center justify-end border-b border-border-subtle px-6 py-4">
+            <div className="rounded-full border border-border-subtle bg-canvas/70 p-1">
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "h-10 w-10",
+                    userButtonPopoverCard:
+                      "border border-[hsl(120_10%_83%)] shadow-card",
+                    userButtonPopoverActionButton:
+                      "text-[hsl(206_19%_15%)] hover:bg-[hsl(139_26%_34%_/_0.08)]",
+                  },
+                }}
+                afterSignOutUrl="/"
+              />
+            </div>
+          </div>
           {children}
         </div>
       </div>
     </div>
   );
 }
-

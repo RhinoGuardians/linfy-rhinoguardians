@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 
 import { Logo } from "@/components/shared/logo";
@@ -36,18 +37,31 @@ export function MarketingShell({ children }: { children: ReactNode }) {
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            <Link
-              className={buttonVariants({ size: "sm", variant: "ghost" })}
-              href={appRoutes.signIn}
-            >
-              Sign in
-            </Link>
+            <SignedOut>
+              <Link
+                className={buttonVariants({ size: "sm", variant: "ghost" })}
+                href={appRoutes.signIn}
+                prefetch={false}
+              >
+                Sign in
+              </Link>
+            </SignedOut>
+            <SignedIn>
+              <Link
+                className={buttonVariants({ size: "sm", variant: "ghost" })}
+                href={appRoutes.dashboard}
+                prefetch={false}
+              >
+                Go to Dashboard
+              </Link>
+            </SignedIn>
             <Link
               className={cn(
                 buttonVariants({ size: "sm" }),
                 "shadow-[0_18px_40px_-24px_rgba(65,166,112,0.75)]",
               )}
               href={appRoutes.signUp}
+              prefetch={false}
             >
               Request demo
             </Link>
