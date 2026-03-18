@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { CommandCenterKpiCard } from "@/features/dashboard/components/command-center-kpi-card";
 import { IncidentRow } from "@/features/dashboard/components/incident-row";
@@ -7,13 +11,16 @@ import { ReserveOverviewCard } from "@/features/dashboard/components/reserve-ove
 import {
   commandCenterKpis,
   liveEvents,
-  mapPings,
   mapZoneSummaries,
   recentIncidents,
   reserveOverview,
 } from "@/features/dashboard/mock/command-center";
 
 export function DashboardOverview() {
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(
+    liveEvents[0]?.id ?? null,
+  );
+
   return (
     <div className="space-y-6">
       <div className="grid gap-4 xl:grid-cols-4">
@@ -24,8 +31,9 @@ export function DashboardOverview() {
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1.45fr)_400px]">
         <MapSurfaceCard
-          activeEvents={liveEvents}
-          pings={mapPings}
+          events={liveEvents}
+          onSelectEvent={setSelectedEventId}
+          selectedEventId={selectedEventId}
           zones={mapZoneSummaries}
         />
         <Card className="overflow-hidden border-border-subtle/80 bg-surface/88">
@@ -44,7 +52,12 @@ export function DashboardOverview() {
             </div>
             <div className="max-h-[640px] space-y-3 overflow-y-auto pr-1">
               {liveEvents.map((event) => (
-                <LiveEventCard event={event} key={event.id} />
+                <LiveEventCard
+                  event={event}
+                  isSelected={event.id === selectedEventId}
+                  key={event.id}
+                  onSelect={setSelectedEventId}
+                />
               ))}
             </div>
           </CardContent>

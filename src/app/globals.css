@@ -72,6 +72,34 @@ body {
   color: hsl(var(--text-primary));
 }
 
+.dashboard-theme .leaflet-container {
+  height: 100%;
+  width: 100%;
+  background: hsl(210 24% 9%);
+  font: inherit;
+}
+
+.dashboard-theme .leaflet-control-zoom a,
+.dashboard-theme .leaflet-control-attribution {
+  background: hsl(210 20% 12% / 0.9);
+  color: hsl(var(--text-primary));
+  border-color: hsl(var(--border-subtle));
+}
+
+.dashboard-theme .leaflet-popup-content-wrapper,
+.dashboard-theme .leaflet-popup-tip {
+  background: hsl(210 20% 12%);
+  color: hsl(var(--text-primary));
+}
+
+.dashboard-theme .leaflet-popup-content {
+  margin: 0;
+}
+
+.dashboard-theme .leaflet-control-attribution a {
+  color: hsl(var(--brand-secondary));
+}
+
 a {
   color: inherit;
   text-decoration: none;

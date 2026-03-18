@@ -5,6 +5,7 @@ import { Fraunces, Inter } from "next/font/google";
 
 import { Providers } from "@/app/providers";
 import "@/app/globals.css";
+import "leaflet/dist/leaflet.css";
 
 const bodyFont = Inter({
   subsets: ["latin"],

@@ -10,15 +10,28 @@ import { cn } from "@/lib/utils";
 
 interface LiveEventCardProps {
   event: LiveEvent;
+  isSelected?: boolean;
+  onSelect?: (eventId: string) => void;
 }
 
-export function LiveEventCard({ event }: LiveEventCardProps) {
+export function LiveEventCard({
+  event,
+  isSelected = false,
+  onSelect,
+}: LiveEventCardProps) {
   const severityClasses = getSeverityClasses(event.severity);
 
   return (
-    <article
+    <button
       aria-label={getEventAriaLabel(event)}
-      className="rounded-2xl border border-border-subtle/80 bg-surface/88 p-4"
+      className={cn(
+        "w-full rounded-2xl border bg-surface/88 p-4 text-left transition-colors",
+        isSelected
+          ? "border-brand-primary/35 bg-brand-primary/10"
+          : "border-border-subtle/80 hover:border-brand-primary/20 hover:bg-surface-elevated/80",
+      )}
+      onClick={() => onSelect?.(event.id)}
+      type="button"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
@@ -58,7 +71,6 @@ export function LiveEventCard({ event }: LiveEventCardProps) {
           <span className="capitalize">{event.status}</span>
         </div>
       </div>
-    </article>
+    </button>
   );
 }
-
