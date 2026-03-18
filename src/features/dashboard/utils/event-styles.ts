@@ -2,11 +2,10 @@ import type {
   CommandCenterKpi,
   IncidentItem,
   LiveEvent,
-  LiveEventSeverity,
-  LiveEventType,
 } from "@/features/dashboard/types";
+import type { EventSeverity, EventType } from "@/types";
 
-export function getSeverityClasses(severity: LiveEventSeverity) {
+export function getSeverityClasses(severity: EventSeverity) {
   switch (severity) {
     case "safe":
       return {
@@ -30,7 +29,7 @@ export function getSeverityClasses(severity: LiveEventSeverity) {
   }
 }
 
-export function getEventTypeLabel(type: LiveEventType) {
+export function getEventTypeLabel(type: EventType) {
   switch (type) {
     case "rhino":
       return "Wildlife";

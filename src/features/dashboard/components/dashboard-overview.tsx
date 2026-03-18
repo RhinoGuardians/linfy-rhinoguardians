@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { CommandCenterKpiCard } from "@/features/dashboard/components/command-center-kpi-card";
@@ -8,23 +8,31 @@ import { IncidentRow } from "@/features/dashboard/components/incident-row";
 import { LiveEventCard } from "@/features/dashboard/components/live-event-card";
 import { MapSurfaceCard } from "@/features/dashboard/components/map-surface-card";
 import { ReserveOverviewCard } from "@/features/dashboard/components/reserve-overview-card";
-import {
-  commandCenterKpis,
-  liveEvents,
-  mapZoneSummaries,
-  recentIncidents,
-  reserveOverview,
-} from "@/features/dashboard/mock/command-center";
+import { selectRecentIncidents } from "@/features/dashboard/selectors";
+import { useAppStore } from "@/store";
 
 export function DashboardOverview() {
-  const [selectedEventId, setSelectedEventId] = useState<string | null>(
-    liveEvents[0]?.id ?? null,
+  const hydrateFromMockData = useAppStore((state) => state.hydrateFromMockData);
+  const summaryMetrics = useAppStore((state) => state.summaryMetrics);
+  const liveEvents = useAppStore((state) => state.liveEvents);
+  const reserveZones = useAppStore((state) => state.reserveZones);
+  const reserveOverview = useAppStore((state) => state.reserveOverview);
+  const recentIncidents = useAppStore((state) =>
+    selectRecentIncidents(state.recentIncidents),
   );
+  const selectedEventId = useAppStore((state) => state.selectedEventId);
+  const setSelectedEvent = useAppStore((state) => state.setSelectedEvent);
+
+  useEffect(() => {
+    if (liveEvents.length === 0) {
+      hydrateFromMockData();
+    }
+  }, [hydrateFromMockData, liveEvents.length]);
 
   return (
     <div className="space-y-6">
       <div className="grid gap-4 xl:grid-cols-4">
-        {commandCenterKpis.map((item) => (
+        {summaryMetrics.map((item) => (
           <CommandCenterKpiCard item={item} key={item.id} />
         ))}
       </div>
@@ -32,9 +40,9 @@ export function DashboardOverview() {
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1.45fr)_400px]">
         <MapSurfaceCard
           events={liveEvents}
-          onSelectEvent={setSelectedEventId}
+          onSelectEvent={setSelectedEvent}
           selectedEventId={selectedEventId}
-          zones={mapZoneSummaries}
+          zones={reserveZones}
         />
         <Card className="overflow-hidden border-border-subtle/80 bg-surface/88">
           <CardContent className="space-y-5 p-5 sm:p-6">
@@ -56,7 +64,7 @@ export function DashboardOverview() {
                   event={event}
                   isSelected={event.id === selectedEventId}
                   key={event.id}
-                  onSelect={setSelectedEventId}
+                  onSelect={setSelectedEvent}
                 />
               ))}
             </div>

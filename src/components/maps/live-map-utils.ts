@@ -1,6 +1,6 @@
 import type { LatLngTuple } from "leaflet";
 
-import type { LiveEvent, LiveEventSeverity } from "@/features/dashboard/types";
+import type { EventSeverity, LiveEvent } from "@/types";
 
 export const KRUGER_REGION_CENTER: LatLngTuple = [-24.8128, 31.4456];
 export const KRUGER_REGION_ZOOM = 11;
@@ -18,7 +18,7 @@ export function parseEventCoordinates(coordinates: string): LatLngTuple {
 }
 
 export function getEventMarkerStyles(
-  severity: LiveEventSeverity,
+  severity: EventSeverity,
   isSelected: boolean,
 ) {
   const shared = {

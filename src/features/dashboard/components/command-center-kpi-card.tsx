@@ -8,10 +8,11 @@ import {
 
 import { Card, CardContent } from "@/components/ui/card";
 import { getKpiAccentClasses } from "@/features/dashboard/utils/event-styles";
-import type { CommandCenterKpi, CommandCenterKpiId } from "@/features/dashboard/types";
+import type { CommandCenterKpi } from "@/features/dashboard/types";
+import type { SummaryMetricId } from "@/types";
 import { cn } from "@/lib/utils";
 
-const kpiIcons: Record<CommandCenterKpiId, LucideIcon> = {
+const kpiIcons: Record<SummaryMetricId, LucideIcon> = {
   rhinos_detected: Activity,
   active_threats: ShieldAlert,
   ranger_units_online: Users,
@@ -56,4 +57,3 @@ export function CommandCenterKpiCard({
     </Card>
   );
 }
-

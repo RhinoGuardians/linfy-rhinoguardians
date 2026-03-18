@@ -34,4 +34,3 @@ export function IncidentRow({ incident }: IncidentRowProps) {
     </div>
   );
 }
-

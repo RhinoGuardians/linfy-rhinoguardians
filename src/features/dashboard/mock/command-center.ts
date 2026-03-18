@@ -226,3 +226,11 @@ export const recentIncidents: readonly IncidentItem[] = [
     action: "Marked for analyst follow-up and habitat tracking continuity.",
   },
 ] as const;
+
+export const commandCenterMockState = {
+  liveEvents,
+  summaryMetrics: commandCenterKpis,
+  reserveZones: mapZoneSummaries,
+  reserveOverview,
+  recentIncidents,
+} as const;

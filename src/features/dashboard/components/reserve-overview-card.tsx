@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import type { ReserveOverviewItem } from "@/features/dashboard/types";
+import type { ReserveOverviewItem } from "@/types";
 
 interface ReserveOverviewCardProps {
   items: readonly ReserveOverviewItem[];
@@ -41,4 +41,3 @@ export function ReserveOverviewCard({ items }: ReserveOverviewCardProps) {
     </Card>
   );
 }
-

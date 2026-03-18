@@ -4,10 +4,7 @@ import dynamic from "next/dynamic";
 import { Globe, Radar } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
-import type {
-  LiveEvent,
-  MapZoneSummary,
-} from "@/features/dashboard/types";
+import type { LiveEvent, MapZoneSummary } from "@/features/dashboard/types";
 import { cn } from "@/lib/utils";
 
 const LiveEventMap = dynamic(

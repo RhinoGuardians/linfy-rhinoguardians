@@ -1,6 +1,6 @@
 import { LocateFixed } from "lucide-react";
 
-import type { LiveEvent } from "@/features/dashboard/types";
+import type { LiveEvent } from "@/types";
 import {
   getEventAriaLabel,
   getEventTypeLabel,
